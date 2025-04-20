@@ -76,8 +76,17 @@ def run_alerts():
                 entry, tp, sl = calculate_trade(current_price, direction)
                 emoji = '🚀' if direction == 'long' else '🔻'
                 msg = (
-                    f"{emoji} ALERT for #{format_symbol(pair)}
-"
+                    
+"msg = (
+    f"{emoji} ALERT for #{format_symbol(pair)}\n"
+    f"Direction: {'LONG ✅' if direction == 'long' else 'SHORT ❌'}\n"
+    f"Price: {current_price}\n"
+    f"RSI: {rsi}\n"
+    f"MACD: {macd:.2f} | Signal: {signal:.2f}\n"
+    f"🎯 Entry: {entry}\n💰 TP: {tp}\n🛑 SL: {sl}\n"
+    f"🔗 {TRADINGVIEW_URL}{format_symbol(pair)}USDT/"
+)
+send_message(msg)
                     f"Direction: {'LONG ✅' if direction == 'long' else 'SHORT ❌'}
 "
                     f"Price: {current_price}
