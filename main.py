@@ -77,7 +77,7 @@ def run_alerts():
                 emoji = '🚀' if direction == 'long' else '🔻'
                 msg = (
                     
-"msg = (
+msg = (
     f"{emoji} ALERT for #{format_symbol(pair)}\n"
     f"Direction: {'LONG ✅' if direction == 'long' else 'SHORT ❌'}\n"
     f"Price: {current_price}\n"
