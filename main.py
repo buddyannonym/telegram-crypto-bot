@@ -111,11 +111,10 @@ def run_summary():
             change = (closes[-1] - closes[-36]) / closes[-36] * 100
             ranking.append((pair, change))
             summary += (
-                f"#{format_symbol(pair)} – RSI: {rsi} | MACD: {macd:.2f} | Change: {change:.2f}%
-
-                f"🔗 {TRADINGVIEW_URL}{format_symbol(pair)}USDT/
-
-            )
+                summary += (
+    f"#{format_symbol(pair)} – RSI: {rsi} | MACD: {macd:.2f} | Change: {change:.2f}%\n"
+    f"🔗 {TRADINGVIEW_URL}{format_symbol(pair)}USDT/\n"
+)
         except:
             continue
     top = sorted(ranking, key=lambda x: abs(x[1]), reverse=True)[:3]
