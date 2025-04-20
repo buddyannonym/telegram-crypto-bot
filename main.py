@@ -75,11 +75,19 @@ def run_alerts():
 
             if direction:
                 entry, tp, sl = calculate_trade(current_price, direction)
-                emoji = '🚀' if direction == 'long' else '🔻'
+                emoji = 'ð' if direction == 'long' else 'ð»'
                 msg = (
-                    f"{emoji} ALERT for #{format_symbol(pair)}
+                    msg = (
+    f"{emoji} ALERT for #{format_symbol(pair)}\n"
+    f"Direction: {"LONG â" if direction == "long" else "SHORT â"}\n"
+    f"Price: {current_price}\n"
+    f"RSI: {rsi}\n"
+    f"MACD: {macd:.2f} | Signal: {signal:.2f}\n"
+    f"ð¯ Entry: {entry}\nð° TP: {tp}\nð SL: {sl}\n"
+    f"ð {TRADINGVIEW_URL}{format_symbol(pair)}USDT/"
+)
 "
-                    f"Direction: {'LONG ✅' if direction == 'long' else 'SHORT ❌'}
+                    f"Direction: {'LONG â' if direction == 'long' else 'SHORT â'}
 "
                     f"Price: {current_price}
 "
@@ -87,18 +95,18 @@ def run_alerts():
 "
                     f"MACD: {macd:.2f} | Signal: {signal:.2f}
 "
-                    f"🎯 Entry: {entry}
-💰 TP: {tp}
-🛑 SL: {sl}
+                    f"ð¯ Entry: {entry}
+ð° TP: {tp}
+ð SL: {sl}
 "
-                    f"🔗 {TRADINGVIEW_URL}{format_symbol(pair)}USDT/"
+                    f"ð {TRADINGVIEW_URL}{format_symbol(pair)}USDT/"
                 )
                 send_message(msg)
         except Exception as e:
             print(f"Error with {pair}: {e}")
 
 def run_summary():
-    summary = "🕒 3H Market Summary
+    summary = "ð 3H Market Summary
 "
     ranking = []
     for pair in TRADING_PAIRS:
@@ -109,16 +117,16 @@ def run_summary():
             change = (closes[-1] - closes[-36]) / closes[-36] * 100
             ranking.append((pair, change))
             summary += (
-                f"#{format_symbol(pair)} – RSI: {rsi} | MACD: {macd:.2f} | Change: {change:.2f}%
+                f"#{format_symbol(pair)} â RSI: {rsi} | MACD: {macd:.2f} | Change: {change:.2f}%
 "
-                f"🔗 {TRADINGVIEW_URL}{format_symbol(pair)}USDT/
+                f"ð {TRADINGVIEW_URL}{format_symbol(pair)}USDT/
 "
             )
         except:
             continue
     top = sorted(ranking, key=lambda x: abs(x[1]), reverse=True)[:3]
     summary += "
-🔥 Top Movers (3h):
+ð¥ Top Movers (3h):
 "
     for s, ch in top:
         summary += f"- #{format_symbol(s)}: {ch:.2f}%
