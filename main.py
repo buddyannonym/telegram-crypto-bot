@@ -118,8 +118,8 @@ def run_summary():
         except:
             continue
     top = sorted(ranking, key=lambda x: abs(x[1]), reverse=True)[:3]
-    summary += "\n🔥 Top Movers (3h):\n"
-🔥 Top Movers (3h):
+    summary += "\n Top Movers (3h):\n"
+ Top Movers (3h):
 
     for s, ch in top:
         summary += f"- #{format_symbol(s)}: {ch:.2f}%
