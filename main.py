@@ -101,7 +101,7 @@ send_message(msg)
             print(f"Error with {pair}: {e}")
 
 def run_summary():
-    summary = "🕒 3H Market Summary
+    summary = "🕒 3H Market Summary\n"
 "
     ranking = []
     for pair in TRADING_PAIRS:
