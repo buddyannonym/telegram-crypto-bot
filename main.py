@@ -102,7 +102,6 @@ send_message(msg)
 
 def run_summary():
     summary = "🕒 3H Market Summary\n"
-"
     ranking = []
     for pair in TRADING_PAIRS:
         try:
