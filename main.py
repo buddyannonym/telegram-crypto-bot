@@ -112,19 +112,19 @@ def run_summary():
             ranking.append((pair, change))
             summary += (
                 f"#{format_symbol(pair)} – RSI: {rsi} | MACD: {macd:.2f} | Change: {change:.2f}%
-"
+
                 f"🔗 {TRADINGVIEW_URL}{format_symbol(pair)}USDT/
-"
+
             )
         except:
             continue
     top = sorted(ranking, key=lambda x: abs(x[1]), reverse=True)[:3]
     summary += "
 🔥 Top Movers (3h):
-"
+
     for s, ch in top:
         summary += f"- #{format_symbol(s)}: {ch:.2f}%
-"
+
     send_message(summary)
 
 while True:
