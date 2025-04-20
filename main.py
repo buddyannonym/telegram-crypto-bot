@@ -122,7 +122,7 @@ def run_summary():
  summary += "Top Movers (3h):\\n"
 
     for s, ch in top:
-        summary += f"- #{format_symbol(s)}: {ch:.2f}%
+        summary += f"- #{format_symbol(s)}: {ch:.2f}%\n"
 
     send_message(summary)
 
