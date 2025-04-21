@@ -88,7 +88,7 @@ def run_alerts():
             print(f"Error with {pair}: {e}")
 
 def run_summary():
-    summary = "3H Market Summary\n\n"
+    summary = "🕒 3H Market Summary\n\n"
     ranking = []
 
     for pair in TRADING_PAIRS:
@@ -100,14 +100,14 @@ def run_summary():
             ranking.append((pair, change))
 
             summary += (
-                f"#{format_symbol(pair)} – RSI: {rsi} | MACD: {macd:.2f} | Change: {change:.2f}%\n"
+                f"#{format_symbol(pair)} – RSI: {rsi:.2f} | MACD: {macd:.2f} | Change: {change:.2f}%\n"
                 f"{TRADINGVIEW_URL}{format_symbol(pair)}USDT/\n\n"
             )
         except Exception as e:
-            print(f"Summary error with {pair}: {e}")
+            summary += f"⚠️ Error fetching {pair}: {e}\n"
 
+    summary += "* Top Movers (3h):\n"
     top = sorted(ranking, key=lambda x: abs(x[1]), reverse=True)[:3]
-    summary += "Top Movers (3h):\n"
     for s, ch in top:
         summary += f"- #{format_symbol(s)}: {ch:.2f}%\n"
 
