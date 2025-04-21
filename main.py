@@ -88,8 +88,9 @@ def run_alerts():
             print(f"Error with {pair}: {e}")
 
 def run_summary():
-    summary = "3H Market Summary"
+    summary = "3H Market Summary\n\n"
     ranking = []
+
     for pair in TRADING_PAIRS:
         try:
             closes = get_price_data(pair)
@@ -97,16 +98,19 @@ def run_summary():
             macd, signal = get_macd(closes)
             change = (closes[-1] - closes[-36]) / closes[-36] * 100
             ranking.append((pair, change))
+
             summary += (
-                f"#{format_symbol(pair)} – RSI: {rsi} | MACD: {macd:.2f} | Change: {change:.2f}%"
-                f"{TRADINGVIEW_URL}{format_symbol(pair)}USDT/"
+                f"#{format_symbol(pair)} – RSI: {rsi} | MACD: {macd:.2f} | Change: {change:.2f}%\n"
+                f"{TRADINGVIEW_URL}{format_symbol(pair)}USDT/\n\n"
             )
-        except:
-            continue
+        except Exception as e:
+            print(f"Summary error with {pair}: {e}")
+
     top = sorted(ranking, key=lambda x: abs(x[1]), reverse=True)[:3]
-    summary += "Top Movers (3h):"
+    summary += "Top Movers (3h):\n"
     for s, ch in top:
-        summary += f"- #{format_symbol(s)}: {ch:.2f}%"
+        summary += f"- #{format_symbol(s)}: {ch:.2f}%\n"
+
     send_message(summary)
 
 while True:
