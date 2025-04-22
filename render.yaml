@@ -1,0 +1,12 @@
+services:
+  - type: worker
+    name: telegram-crypto-bot
+    env: python
+    plan: starter
+    buildCommand: ""
+    startCommand: "python3 src/main.py"
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: true
+      - key: TELEGRAM_CHAT_ID
+        sync: true
